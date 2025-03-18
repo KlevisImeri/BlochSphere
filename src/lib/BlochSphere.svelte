@@ -59,7 +59,14 @@
     { position: [0, 0, -AXES_SIZE - 1], text: '|↻⟩' },
   ];
 
-  let { element }: { element: HTMLElement } = $props()
+  let { element, paths } = $props<{
+    element: HTMLElement;
+    paths: Vector3Tuple[][];
+  }>();
+  if (paths === undefined){
+    paths = [];
+  }
+  //TODO: render the paths
 </script>
 
 <T.Mesh {geometry} {material} />
