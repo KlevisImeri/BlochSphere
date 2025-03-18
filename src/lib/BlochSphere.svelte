@@ -42,7 +42,7 @@
   ]);
   const axesMaterial = new LineBasicMaterial({ 
     color: 'gray',
-    linewidth: 200
+    linewidth: 2
   });
 
   type lable = {
