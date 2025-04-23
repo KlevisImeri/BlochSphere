@@ -8,13 +8,9 @@
     Vector3,
   } from 'three';
   import type { Vector3Tuple } from 'three';
-  import { Gizmo, OrbitControls } from '@threlte/extras';
+  import { OrbitControls } from '@threlte/extras';
   import Arrow from '$lib/BlochArrow.svelte';
   import Label from '$lib/BlochLabel.svelte';
-  import type {
-    QubitPolar,
-    QubitVector,
-  } from '$lib/blochUtils.ts';
 
   let autoRotate: boolean = false
   let enableDamping: boolean = true
@@ -23,8 +19,8 @@
   let zoomSpeed: number = 1
   let minPolarAngle: number = 1
   let maxPolarAngle: number = 1
-  let enableZoom: boolean = true
-  
+  let enableZoom: boolean = true 
+
   let SPHERE_SIZE = 5
   let AXES_SIZE = 5
   let MESH_SIZE = 40
@@ -65,15 +61,18 @@
     { position: [-AXES_SIZE - 1, 0, 0], text: '|↻⟩' },
   ];
 
-  let { element, paths } = $props<{
-    element: HTMLElement;
-    paths: QubitPolar[][];
-  }>();
+  export let element: HTMLElement;
+  import { paths } from '$lib/stores';
 
   function colorForPath(i: number): string {
-    if (i === 0) return 'hsl(0, 0%, 100%)';         // first path is white
-    const hue = ((i - 1) * 137.508) % 360;          // golden-angle
-    return `hsl(${hue}, 100%, 50%)`;                // bright colors
+    if (i === 0) return 'hsl(0, 0%, 100%)';
+    const hue = ((i - 1) * 137.508) % 360;
+    return `hsl(${hue}, 100%, 50%)`;
+  }
+
+  function colorForPathRandom(): string {
+    const hue = Math.random() * 360;
+    return `hsl(${hue}, 100%, 50%)`; 
   }
 
 </script>
@@ -84,7 +83,7 @@
   <Label {element} {position} {text} />
 {/each}
 
-{#each paths as path, i}
+{#each $paths as path, i}
   {#each path as { theta, phi }}
     <Arrow {theta} {phi} color={colorForPath(i)} />
   {/each}
@@ -94,7 +93,7 @@
 <!-- https://threlte.xyz/docs/reference/extras/orbit-controls -->
 <T.PerspectiveCamera
   makeDefault
-  position={[20, 10, 20]}
+  position={[15, 7.5, 15]}
   lookAt.y={0.5}
   fov={50}
 >
@@ -113,7 +112,6 @@
     {maxPolarAngle}
     {enableZoom}
   >
-    <!-- <Gizmo /> -->
   </OrbitControls>
 </T.PerspectiveCamera>
 <T.AmbientLight intensity={0.5} />

@@ -65,3 +65,55 @@ export function convertQubit(qubit: QubitVector): QubitPolar {
   return { theta, phi };
 }
 ```
+
+
+This are all the fucntoins in the scope:
+```java
+function createEvalContext() {
+    // Create math instance with all functions
+    const math = create(all, {});
+
+    return {
+      // Core math.js functions
+      matrix: math.matrix,
+      multiply: math.multiply,
+      sqrt: math.sqrt,
+      complex: math.complex,
+      add: math.add,
+      subtract: math.subtract,
+      divide: math.divide,
+      pow: math.pow,
+      exp: math.exp,
+      log: math.log,
+      sin: math.sin,
+      cos: math.cos,
+      tan: math.tan,
+      pi: math.pi,
+      e: math.e,
+      abs: math.abs,
+      conj: math.conj,
+      re: math.re,
+      im: math.im,
+      arg: math.arg,
+      norm: math.norm,
+      
+      // Matrix-specific functions
+      transpose: math.transpose,
+      det: math.det,
+      inv: math.inv,
+      
+      // Your custom functions
+      show,
+      clear,
+      M,
+      
+      // Constants
+      i: math.complex(0, 1),
+      π: math.pi,
+      
+      // Namespace fallback (just in case)
+      math
+    };
+}
+
+```
