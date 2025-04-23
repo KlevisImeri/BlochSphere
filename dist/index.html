@@ -5,40 +5,55 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link href="./_app/immutable/assets/0.Da6NERGk.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/0.CVCvlXJ3.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/2.GMmX6nvr.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.BcZ6oKnO.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/SjBzXwzu.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/WLnxfjTq.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/EKh70yEK.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.DiuOUwsS.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/G-B3hwJn.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BdRkxaRA.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/suiJjguJ.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.Cd7MOjpv.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/C2tdxnXr.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.CiVQsjDM.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/C_r0LgAZ.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.ChkQUoWK.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/CnxqanvD.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BaGV988V.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DNSMYPp_.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.C6t6DWUY.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/LKSXa8Ai.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Cf82dYDY.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BBqwhRus.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.CkM5b6pK.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/CahpOkFN.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.CPkjssmb.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Cn_vYELe.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[--><!----><!----><div class="bg-zinc-900 h-screen w-screen flex"><div class="w-2/6 h-full border-r border-zinc-700"><div class="relative w-full h-full p-4"><pre class="absolute inset-0 p-4 m-0 font-mono text-lg leading-relaxed bg-zinc-900 text-white whitespace-pre-wrap overflow-auto rounded-lg" aria-hidden="true"><!----><!----></pre> <textarea spellcheck="false" class="absolute inset-0 p-4 m-0 font-mono text-lg leading-relaxed bg-transparent text-transparent caret-white border-none outline-none resize-none whitespace-pre-wrap overflow-auto rounded-lg" aria-label="Code Editor">/* Work in progress, dummy data! */
-const M = matrix([
-  [1 + 2 * i, 3 - i],
-  [i, 4 + 2 * i]
+		<div style="display: contents"><!--[--><!--[--><!----><!----><div class="bg-zinc-900 h-screen w-screen flex"><div class="w-4/10 h-full border-r border-zinc-700"><div class="flex flex-col h-screen border-r-2"><div class="relative flex-1 p-4 bg-zinc-900 rounded-t-lg border-b-3 border-zinc-800"><pre class="absolute inset-0 p-4 m-0 font-mono text-lg leading-relaxed text-white whitespace-pre-wrap overflow-auto rounded-t-lg" aria-hidden="true"><!----><!----></pre> <textarea spellcheck="false" class="absolute inset-0 p-4 m-0 font-mono text-lg leading-relaxed bg-transparent text-transparent caret-white border-none outline-none resize-none whitespace-pre-wrap overflow-auto rounded-t-lg" aria-label="Code Editor">clear(); //This clears all the qubits
+
+const ket0 = M([
+  ['1 + 0i'],
+  ['0 + 0i']
 ]);
 
-const v = matrix([
-  [2 - 3 * i],
-  [1 + 4 * i]
+const H = multiply( // Hadamand Matrix
+  M([
+    ['1 + 0i', '1 + 0i'],
+    ['1 + 0i', '-1 + 0i']
+  ]),
+  1 / sqrt(2)
+);
+
+const res1 = multiply(H, ket0);
+const res2 = multiply(H, res1);
+
+show(res1, res2); 
+
+const Y = M([ // Pauli Y gate
+  ['0 + 0i', '0 - 1i'],
+  ['0 + 1i', '0 + 0i']
 ]);
 
-const res = multiply(M, v);
+const res3 = multiply(Y, ket0);
+const res4 = multiply(Y, res3);
 
-show(res);</textarea></div><!----></div> <div class="flex-1 relative"><div id="css-renderer-target" class="absolute top-0 left-0 w-full h-full pointer-events-none svelte-tgz8ou"></div> <div class="svelte-1osucwe"><canvas class="svelte-1osucwe"><!--[!--><!--]--></canvas></div><!----></div></div><!----><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+show(res3, res4);</textarea> <div class="absolute bottom-0 left-0 right-0 h-2 cursor-row-resize bg-transparent"></div></div> <div class="p-4 bg-zinc-900 text-base text-white font-mono overflow-auto h-40 resize-y rounded-b-gl">Log: <!--[--><!--]--></div></div><!----></div> <div class="flex-1 relative"><div id="css-renderer-target" class="absolute top-0 left-0 w-full h-full pointer-events-none svelte-tgz8ou"></div> <div class="svelte-1osucwe"><canvas class="svelte-1osucwe"><!--[!--><!--]--></canvas></div><!----></div></div><!----><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_w48nwa = {
+					__sveltekit_2hqo7r = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						assets: "/BlochSphere"
 					};
@@ -46,8 +61,8 @@ show(res);</textarea></div><!----></div> <div class="flex-1 relative"><div id="c
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("./_app/immutable/entry/start.BcZ6oKnO.js"),
-						import("./_app/immutable/entry/app.DiuOUwsS.js")
+						import("./_app/immutable/entry/start.ChkQUoWK.js"),
+						import("./_app/immutable/entry/app.C6t6DWUY.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2],
