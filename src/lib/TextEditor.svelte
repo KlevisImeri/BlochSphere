@@ -88,7 +88,8 @@
   }
 
   let code =
-`// To see visualizations, uncomment the show() calls
+`// 🔍 To see visualizations, uncomment the show() calls  
+// 🚀 Press [Ctrl + Enter] to run the script
 const ket0 = M([ // |0⟩
   ['1 + 0i'],
   ['0 + 0i']
@@ -120,8 +121,8 @@ const custom = M([
 // show(custom);
 
 // ═══════════════════════════════════════════════ //
-//   FETCHING TIME FROM API AND DISPLAYING CLOCK   //
-//               ON BLOCH SPHERE                   //
+//  ⏰ FETCHING TIME FROM API & DISPLAYING CLOCK   //
+//               🎯 ON BLOCH SPHERE               //
 // ═══════════════════════════════════════════════ //
 function polarToQubit(theta, phi) {
   const alphaReal = cos(theta / 2);
