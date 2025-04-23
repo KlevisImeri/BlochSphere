@@ -94,7 +94,7 @@
 <!-- https://threlte.xyz/docs/reference/extras/orbit-controls -->
 <T.PerspectiveCamera
   makeDefault
-  position={[10, 5, 10]}
+  position={[20, 10, 20]}
   lookAt.y={0.5}
   fov={50}
 >
