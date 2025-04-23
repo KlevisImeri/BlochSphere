@@ -1,27 +1,50 @@
 <script lang="ts">
-  import { Vector3 as Vec, ArrowHelper, Euler, Group } from 'three';
+  import { Vector3, Quaternion, Euler} from 'three';
   import { T } from '@threlte/core';
 
-  export let dir = new Vec( 0, 1, 1 )
-  export let length = 5;
-  // export let origin = new Vec( 0, 0, 0 ) 
-  export let color: string = 'white'
-  // export let headLength = length * 0.2
-  // export let headWidth = headLength * 0.2 
-  
+  let radius: number = 5;                // r (magnitude)
+  export let theta: number = 0;          // θ [0, π] polar angle from y-axis
+  export let phi: number = 0;            // φ [0, 2π] azimuthal angle around y-axis
+  export let color: string = 'white';
+  let shaftRadius: number = 0.05;
+  let headRadius: number = 0.1;
+  let headLength = 0.3;
   let SHIFT = -0.1;
+  const shaftLength = radius + SHIFT*2;
 
+  // Convert spherical to cartesian coordinates
+  const direction = new Vector3();
+  direction.setFromSphericalCoords(
+    radius,
+    theta,    // θ - polar angle from positive y-axis
+    phi       // φ - azimuthal angle around y-axis
+  );
+
+  // Calculate rotation using quaternion
+  const quaternion = new Quaternion().setFromUnitVectors(
+    new Vector3(0, 1, 0), // Default up direction
+    direction.clone().normalize()
+  );
+  
+  // Convert to Euler angles tuple for Threlte
+  const euler = new Euler().setFromQuaternion(quaternion);
+  const rotation: [number, number, number] = [euler.x, euler.y, euler.z];
 </script>
 
-<T.Group  rotation={[1, 0, 0]}>
-  <T.Mesh position.y={length / 2 + SHIFT}>
-    <T.CylinderGeometry args={[0.05, 0.05, length + SHIFT * 2, 8]} />
+<T.Group {rotation}>
+  <!-- Arrow Shaft -->
+  <T.Mesh position.y={shaftLength / 2 + SHIFT}>
+    <T.CylinderGeometry
+      args={[shaftRadius, shaftRadius, shaftLength, 8]}
+    />
     <T.MeshStandardMaterial {color} />
   </T.Mesh>
 
-  <T.Mesh position.y={length - 0.14}>
-    <T.ConeGeometry args={[0.1, 0.3, 8]} />
+  <!-- Arrow Head -->
+  <T.Mesh position.y={shaftLength}>
+    <T.ConeGeometry
+      args={[headRadius, headLength, 8]}
+    />
     <T.MeshStandardMaterial {color} />
   </T.Mesh>
-
 </T.Group>

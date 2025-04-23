@@ -11,6 +11,10 @@
   import { Gizmo, OrbitControls } from '@threlte/extras';
   import Arrow from '$lib/BlochArrow.svelte';
   import Label from '$lib/BlochLabel.svelte';
+  import type {
+    QubitPolar,
+    QubitVector,
+  } from '$lib/blochUtils.ts';
 
   let autoRotate: boolean = false
   let enableDamping: boolean = true
@@ -49,24 +53,29 @@
     position: Vector3Tuple;
     text: string;
   };
-
+  
+  // NOTE: Threlte uses Y as the up direction.
+  // so Z->Y, Z->X, X->Y
   const labels: lable[] = [
     { position: [0, AXES_SIZE + 1, 0], text: '|0⟩' },
     { position: [0, -AXES_SIZE - 1, 0], text: '|1⟩' },
-    { position: [AXES_SIZE + 1, 0, 0], text: '|+⟩' },
-    { position: [-AXES_SIZE - 1, 0, 0], text: '|−⟩' },
-    { position: [0, 0, AXES_SIZE + 1], text: '|↺⟩' },
-    { position: [0, 0, -AXES_SIZE - 1], text: '|↻⟩' },
+    { position: [0, 0, AXES_SIZE + 1], text: '|+⟩' },
+    { position: [0, 0, -AXES_SIZE - 1], text: '|-⟩' },
+    { position: [AXES_SIZE + 1, 0, 0], text: '|↺⟩' },
+    { position: [-AXES_SIZE - 1, 0, 0], text: '|↻⟩' },
   ];
 
   let { element, paths } = $props<{
     element: HTMLElement;
-    paths: Vector3Tuple[][];
+    paths: QubitPolar[][];
   }>();
-  if (paths === undefined){
-    paths = [];
+
+  function colorForPath(i: number): string {
+    if (i === 0) return 'hsl(0, 0%, 100%)';         // first path is white
+    const hue = ((i - 1) * 137.508) % 360;          // golden-angle
+    return `hsl(${hue}, 100%, 50%)`;                // bright colors
   }
-  //TODO: render the paths
+
 </script>
 
 <T.Mesh {geometry} {material} />
@@ -74,7 +83,13 @@
 {#each labels as { position, text }}
   <Label {element} {position} {text} />
 {/each}
-<Arrow/>
+
+{#each paths as path, i}
+  {#each path as { theta, phi }}
+    <Arrow {theta} {phi} color={colorForPath(i)} />
+  {/each}
+{/each}
+
 
 <!-- https://threlte.xyz/docs/reference/extras/orbit-controls -->
 <T.PerspectiveCamera
