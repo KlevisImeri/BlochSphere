@@ -4,7 +4,7 @@
 - Documentation: [Documentation_BlochSphereSimualtor.pdf](https://github.com/KlevisImeri/BlochSphere/blob/main/Documentation_BlochSphereSimulator.pdf)
 
 ## Running the program
-Note: This instructions below assume you are using Git Bash (Windows). If you are using a different terminal, some commands or setup steps may vary sligthly.
+Note: The instructions below assume you are using Git Bash (Windows). If you are using a different terminal, some commands or setup steps may vary slightly.
 1. Run with Bun (recommended)
 
 If you have Bun installed, you can run the project locally with:
