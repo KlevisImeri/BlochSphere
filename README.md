@@ -35,12 +35,14 @@ Let $\frac{θ}{2}$ be the angle creating this values. We chose $\frac{1}{2}$ bec
 Ther is no much meaning behind why we chose $\frac{1}{2}$ we are just trying to represent the equations with two angles that fit our description of a poloar and aizmuthal angle.
 So what we are trying to do from he beginning is to represent $|ψ⟩$ as a fucntion of $f(φ,θ)$.
 Mathematically:
+
 $$ |ψ⟩ = f(φ,θ) \quad s.t \quad φ ∈ [0, 2π],  θ ∈ [0, π]  $$
 
 ![](assets/unit.png)
 
 
 Putting everything together:
+
 $$\begin{align*}
 |ψ⟩ &= \cos \frac{θ}{2} |0〉 + \sin \frac{θ}{2} e^{i φ} |1〉 \\  
 φ &≔ φ_β - φ_α = \arg(β)−\arg(α) =\arg(|\frac{β}{α}|),  \quad φ ∈ [0, 2π] \quad \text{(azimuthal angle)} \\  
@@ -48,13 +50,16 @@ $$\begin{align*}
 &= 2 \sin⁻¹(r_β) \\
 &=2\arctan \frac{r_β}{r_α} = 2\arctan |\frac{β}{α}| \quad θ ∈ [0, π] \quad \text{(polar angle)}
 \end{align*}$$
+
 one more thing to notice is that
 
 
 ![Bloch Sphere (source: Wikipedia)](assets/sphere.png)
 The image was taken from: https://en.wikipedia.org/wiki/Bloch_sphere#/media/File:Bloch_sphere.svg
 Well let's also include the global phaze wich we dont really need:
+
 $$|ψ⟩ ≡ e^{iγ}|ψ⟩ = e^{iγ}f(φ,θ) = e^{iγ}[\cos \frac{θ}{2} |0〉 + \sin \frac{θ}{2} e^{i φ} |1⟩] \quad γ,θ,φ ∈ ℝ $$
+
 or in other words qubits are equivalent under a global phaze becuae the global phaze dissapears when me meausure so we can't see its effect at all, not even in interferece (like the phaze usually does).
 
 Here is the code to do the conversions:
