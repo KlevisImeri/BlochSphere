@@ -4,23 +4,30 @@
 - Documentation: [Documentation_BlochSphereSimualtor.pdf](https://github.com/KlevisImeri/BlochSphere/blob/main/Documentation_BlochSphereSimulator.pdf)
 
 ## Running the program
-
-1. If you have bun installed you can run it locally as:
+Note: This instructions below assume you are using Git Bash (Windows). If you are using a different terminal, some commands or setup steps may vary sligthly.
+1. Run with Bun (recommended)
+If you have Bun installed, you can run the project locally with:
 ```
 $ bun install
 $ bun vite
 ```
-in your terminal.
-Then just open `http://localhost:5173/BlochSphere` in your browser.
-
-2. You can also run it locally by serving the dist folder
+Then open `http://localhost:5173/BlochSphere` in your browser.
+If Bun is not recognized:
+- Install Bun:
+```
+curl -fsSL https://bun.sh/install | bash
+```
+Now you should be able to run the commands.
+2. Run with Python
+Alternatively, you can serve the static files directly from the dist folder:
 ```
 $ cd dist
 $ python -m http.server 8000
 ```
-Then just open `http://0.0.0.0:8000/` in your browser.
+Then open `http://0.0.0.0:8000/` in your browser.
 
-3. Or if you don't want to configure anything you can go to `https://klevisimeri.github.io/BlochSphere/` which is already serving the running program.
+3. Run online (no setup)
+If you prefer not to configure anything locally, simply visit the deployed version: `https://klevisimeri.github.io/BlochSphere/` which is already serving the running program.
 
 
 
