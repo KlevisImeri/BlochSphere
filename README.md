@@ -1,7 +1,7 @@
 
 ## Documentation
 - Specification: [BlochSphereSimulator.pdf](https://github.com/KlevisImeri/BlochSphere/blob/main/BlochSphereSimulator.pdf)
-- Documentation: //please ad it here akylai
+- Documentation: [Documentation_BlochSphereSimualtor.pdf](./https://github.com/KlevisImeri/BlochSphere/blob/main/Documentation_BlochSphereSimulator.pdf)
 
 ## Running the program
 To run it locally just
