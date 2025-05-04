@@ -57,8 +57,8 @@
     { position: [0, -AXES_SIZE - 1, 0], text: '|1⟩' },
     { position: [0, 0, AXES_SIZE + 1], text: '|+⟩' },
     { position: [0, 0, -AXES_SIZE - 1], text: '|-⟩' },
-    { position: [AXES_SIZE + 1, 0, 0], text: '|↺⟩' },
-    { position: [-AXES_SIZE - 1, 0, 0], text: '|↻⟩' },
+    { position: [AXES_SIZE + 1, 0, 0], text: '|+i⟩' },
+    { position: [-AXES_SIZE - 1, 0, 0], text: '|-i⟩' },
   ];
 
   export let element: HTMLElement;

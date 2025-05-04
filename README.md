@@ -2,11 +2,9 @@
 
 - Specification: [BlochSphereSimulator.pdf](https://github.com/KlevisImeri/BlochSphere/blob/main/BlochSphereSimulator.pdf)
 
-## TODO
-- Documentation
 - Change favicon
 
-### Calculation the Vectors
+### How to do Conversions
 [Video that helped with caculations](https://www.youtube.com/watch?v=a-dIl1Y1aTs)
 
 Lets have a qubit:

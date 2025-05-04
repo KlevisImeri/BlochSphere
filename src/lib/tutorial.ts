@@ -1,27 +1,5 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
-		<link href="./_app/immutable/assets/0.CQEG2qMI.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/2.DbTEw9lx.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.BdDRpf9a.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Tah63U0I.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BJ6f2mZY.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/2ihCA8g4.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.gvGrspbb.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/M12Uh8dV.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BS4oK4z9.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/BiNgOnxS.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.Dt6F8OAr.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Zi-v0ak-.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.8sNRm1rs.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/Koc3AUb2.js">
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents"><!--[--><!--[--><!----><!----><div class="main-container bg-zinc-900 h-screen w-screen flex select-none"><div class="text-editor-container h-full border-r border-zinc-700 overflow-hidden" style="width: 40%;"><div class="flex flex-col h-screen"><div class="relative flex-1 p-4 bg-zinc-900 rounded-t-lg border-b-3 border-zinc-800"><div class="absolute inset-0 overflow-hidden"><pre class="absolute inset-0 p-4 m-0 font-mono text-lg leading-relaxed text-white whitespace-pre overflow-auto rounded-t-lg" aria-hidden="true"><!----><!----></pre> <textarea spellcheck="false" class="absolute inset-0 p-4 m-0 font-mono text-lg leading-relaxed bg-transparent text-transparent caret-white border-none outline-none resize-none whitespace-pre overflow-auto rounded-t-lg" aria-label="Code Editor">// ═══════════════════════════════════════════════ //
+export const tutorialScript =
+`// ═══════════════════════════════════════════════ //
 //  ⚛️ TUTORIAL: QUANTUM STATES VISUALIZED ON      //
 //                 BLOCH SPHERE                    //
 // ═══════════════════════════════════════════════ //
@@ -110,7 +88,7 @@ const v2 = multiply(exp(multiply(i, π/3)), pi3);
 // show(multiply(Z, pi3)) // Axes is the |0⟩
 
 // ═══════════════════════════════════════════════ //
-//  ⏰ FETCHING TIME FROM API &amp; DISPLAYING CLOCK   //
+//  ⏰ FETCHING TIME FROM API & DISPLAYING CLOCK   //
 //               🎯 ON BLOCH SPHERE                //
 // ═══════════════════════════════════════════════ //
 //∣ψ⟩=cos(θ/2)∣0⟩+sin(θ/2)e^{iϕ}∣1⟩ the typical Bloach sphere equation
@@ -128,7 +106,7 @@ function polarToQubit(theta, phi) {
 async function fetchCurrentTime() {
   const timeZone = 'Europe/Budapest';
   const response = await fetch(
-    `https://timeapi.io/api/time/current/zone?timeZone=${encodeURIComponent(timeZone)}`
+    \`https://timeapi.io/api/time/current/zone?timeZone=\${encodeURIComponent(timeZone)}\`
   );
   if (!response.ok) throw new Error('API request failed');
   const data = await response.json();
@@ -136,7 +114,7 @@ async function fetchCurrentTime() {
   const hours = data.hour % 12;
   const minutes = data.minute;
 
-  print('Time fetched', `${hours}:${minutes}`, 'text-green-200');
+  print('Time fetched', \`\${hours}:\${minutes}\`, 'text-green-200');
 
   const hourAngle = (hours * 30) + (minutes * 0.5);
   const minuteAngle = minutes * 6;
@@ -199,30 +177,4 @@ const nonVectorMatrix = M([  // Not a state vector
 // await fetch('https://non-existent-time-api.example.com')
 
 // 🛡️ Type Safety Checks
-// const invalidMatrix2 = M([['1+2j'], ['not a number']]); // Malformed complex number</textarea></div></div> <div class="h-0.5 bg-zinc-800 hover:bg-blue-300 cursor-row-resize flex items-center transition-colors relative"></div> <div class="p-4 bg-zinc-900 text-base text-white font-mono overflow-auto h-40 rounded-b-lg">[BlochSphere]$ <!--[--><!--]--></div></div><!----></div> <div class="drag-handle w-1 h-full bg-zinc-700 hover:bg-blue-300 active:bg-red-300 cursor-col-resize transition-colors duration-200 ease-in-out"></div> <div class="flex-1 relative min-w-0"><div id="css-renderer-target" class="absolute top-0 left-0 w-full h-full pointer-events-none z-10 transform-gpu"></div> <div class="svelte-1osucwe"><canvas class="svelte-1osucwe"><!--[!--><!--]--></canvas></div><!----></div></div><!----><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
-			
-			<script>
-				{
-					__sveltekit_vmc839 = {
-						base: new URL(".", location).pathname.slice(0, -1),
-						assets: "/BlochSphere"
-					};
-
-					const element = document.currentScript.parentElement;
-
-					Promise.all([
-						import("./_app/immutable/entry/start.BdDRpf9a.js"),
-						import("./_app/immutable/entry/app.gvGrspbb.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 2],
-							data: [null,null],
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-	</body>
-</html>
+// const invalidMatrix2 = M([['1+2j'], ['not a number']]); // Malformed complex number`

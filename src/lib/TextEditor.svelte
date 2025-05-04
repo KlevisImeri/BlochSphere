@@ -13,9 +13,13 @@
   import {
     matrixToQubitVector,
     vectorToPolarArray,
-  } from '$lib/blochUtils'; 
+    assertUnitary,
+ } from '$lib/blochUtils'; 
   import { paths } from '$lib/stores';
   import { tick } from 'svelte';
+  import { tutorialScript } from '$lib/tutorial';
+
+  let code = tutorialScript;
 
   function show(...matrices: Matrix<Complex>[]) {
     const qubitVectors = matrices.map(matrix => matrixToQubitVector(matrix));
@@ -27,12 +31,13 @@
   }
 
   function M(input: string[][]) : Matrix<Complex> {
-    return matrix(
+    const mat = matrix(
       input.map(row => row.map(cell => complex(cell)))
     ) as Matrix<Complex>;
+    return mat;
   }
 
-  function log(status: string, message: string, className: string) {
+  function log(status: string, message: string, className: string = 'text-gray-300') {
     const currentdate = new Date().toLocaleString();
     const entry = {
       message: `[${currentdate} | ${status}] ${message}`,
@@ -69,14 +74,17 @@
       norm: math.norm,
 
       // Matrix-specific functions
+      ctranspose: math.ctranspose,
       transpose: math.transpose,
       det: math.det,
       inv: math.inv,
       print: log,
-      // Your custom functions
+
+      // Our custom functions
       show,
       clear,
       M,
+      assertUnitary,
 
       // Constants
       i: math.complex(0, 1),
@@ -86,82 +94,6 @@
       math
     };
   }
-
-  let code =
-`// 🔍 To see visualizations, uncomment the show() calls  
-// 🚀 Press [Ctrl + Enter] to run the script
-const ket0 = M([ // |0⟩
-  ['1 + 0i'],
-  ['0 + 0i']
-]);
-
-const H = multiply( // Hadamand Matrix
-  M([
-    ['1 + 0i', '1 + 0i'],
-    ['1 + 0i', '-1 + 0i']
-  ]),
-  1 / sqrt(2)
-);
-const res1 = multiply(H, ket0);
-const res2 = multiply(H, res1);
-show(res1, res2); 
-
-const Y = M([ // Pauli Y gate
-  ['0 + 0i', '0 - 1i'],
-  ['0 + 1i', '0 + 0i']
-]);
-const res3 = multiply(Y, ket0);
-const res4 = multiply(Y, res1);
-// show(res3, res4); // Uncomment to show the vectors
-
-const custom = M([
-  [sqrt(3/4) + ' + 0i'],       // √(3/4)|0〉
-  ['0 + ' + sqrt(1/4) + 'i']   // i*√(1/4)|1〉 (pure imaginary)
-]);
-// show(custom);
-
-// ═══════════════════════════════════════════════ //
-//  ⏰ FETCHING TIME FROM API & DISPLAYING CLOCK   //
-//               🎯 ON BLOCH SPHERE               //
-// ═══════════════════════════════════════════════ //
-function polarToQubit(theta, phi) {
-  const alphaReal = cos(theta / 2);
-  const betaReal = sin(theta / 2) * math.cos(phi);
-  const betaImag = sin(theta / 2) * math.sin(phi);
-  const alpha = complex(alphaReal, 0);
-  const beta = complex(betaReal, betaImag);
-  return M([
-    [alpha],
-    [beta]
-  ]);
-}
-async function fetchCurrentTime() {
-  const timeZone = 'Europe/Budapest';
-  const response = await fetch(
-    \`https://timeapi.io/api/time/current/zone?timeZone=\${encodeURIComponent(timeZone)}\`
-  );
-  if (!response.ok) throw new Error('API request failed');
-  const data = await response.json();
-
-  const hours = data.hour % 12;
-  const minutes = data.minute;
-
-  print('Time fetched', \`\${hours}:\${minutes}\`, 'text-green-200');
-
-  const hourAngle = (hours * 30) + (minutes * 0.5);
-  const minuteAngle = minutes * 6;
-
-  const hourRadians = (hourAngle * Math.PI) / 180;
-  const minuteRadians = (minuteAngle * Math.PI) / 180;
-
-  const hourHand = polarToQubit(hourRadians, 0);
-  const minuteHand = polarToQubit(minuteRadians, 0);
-
-  show(hourHand, minuteHand);
-
-  print('Success', 'Clock vectors created', 'text-green-200');
-}
-// await fetchCurrentTime(); //Uncoment to show the time on the sphere`
 
   let highlightedCode = '';
   let preElement: HTMLPreElement;
